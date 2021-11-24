@@ -1,0 +1,183 @@
+﻿@model IEnumerable<TalentTrack.Models.tblRequirement>
+
+
+@{
+    ViewBag.Title = "showRequirement";
+    Layout = "~/Views/Shared/RecruiterLayout.cshtml";
+}
+
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                <!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="jbm-cv-box margin-bottom-30">
+                        <h4>Requirement Details</h4> <br><br>
+
+                        <div class="jbm-cv-drag-box">
+                            <div class="row">
+                                <div class="row">
+                                    <div class="col-md-1">
+                                    </div>
+                                    <div class="col-md-10">
+                                     @foreach(var item in Model)
+                                     {
+                                        <div class="jbm-cv-box margin-bottom-40">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <font color="red" style="font-weight: bold;font-size:large;">
+                                                        <u> @item.title </u>
+                                                    </font> <hr>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-bottom: 10px">
+                                                <div class="col-md-4">
+                                                    <font color="Black" style="font-weight: bold;font-size:small;">Posted Date : </font>
+                                                </div>
+                                                <div class="col-md-8" align="left">
+                                                    @item.addedDate
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-bottom: 10px">
+                                                <div class="col-md-4">
+                                                    <font color="Black" style="font-weight: bold;font-size:small;">Category :</font>
+                                                </div>
+                                                <div class="col-md-6" align="left">
+                                                    @item.tblCategory.categoryName
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-bottom: 10px">
+                                                <div class="col-md-4">
+                                                    <font color="Black" style="font-weight: bold;font-size:small;">Description :</font>
+                                                </div>
+                                                <div class="col-md-8" align="left">
+                                                    @item.description
+                                                    <br>
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-bottom: 10px">
+                                                <div class="col-md-4">
+                                                    <font color="Black" style="font-weight: bold;font-size:small;">Experience :</font>
+                                                </div>
+                                                <div class="col-md-4" align="left">
+                                                    @item.experience
+                                                </div>
+                                            </div>
+                                            <div class="row" style="padding-bottom: 10px">
+                                                <div class="col-md-4">
+                                                    <font color="Black" style="font-weight: bold;font-size:small;">Expected Salary :</font>
+                                                </div>
+                                                <div class="col-md-4" align="left">
+                                                    @item.salary
+                                                </div>
+                                            </div>
+                                            @*<div class="row">
+                                                <div class="col-md-12" align="right" style="padding-bottom: 15px;padding-right: 35px">
+                                                    <font color="red" style="font-weight: bold;font-size:small;">
+                                                        Closing Date : @item.closingDate
+                                                        <?php echo date('d M Y',strtotime($key->closingDate)) ?>
+                                                    </font>
+                                                </div>
+                                            </div>*@
+                                            <div class="row">
+                                                @*<div class="col-md-12" align="right">
+                                                    <button type="button" class="jbm-button jbm-button-3" data-toggle="collapse" data-target="#rs @item.requirementId" aria-expanded="true">Show Response</button>
+                                                    <hr>
+                                                </div>*@
+                                                <hr>
+                                                
+                                                <font color="red" style="font-weight: bold;font-size:large;"><center>Responses</center> <br />
+</font>
+                                                <div id="rs @item.requirementId" class="collapse in">
+                                                    @foreach (var x in item.tblRequirementApplications)
+                                                    {
+                                                        <div class="jbm-cv-box" style="padding-bottom: 20px">
+                                                            <div class="row">
+                                                                <div class="jbm-blog-list">
+                                                                    <div class="media">
+                                                                        <div class="media-right">
+                                                                            <div class="blog-post-thumb">
+                                                                                <a href="#"><img src="~/images/@x.tblArtist.image" class="media-object img-rounded" style="width:220px;height:120px"></a>
+                                                                                @*<div class="blog-date">
+                                                                                    <span class="date">
+                                                                                        @x.responseDate
+                                                                                    </span>
+                                                                                    <span class="blog-cat"></span>
+                                                                                </div>*@
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="media-body">
+                                                                            <h5 class="media-heading margin-bottom-20 padding-top-0"><a href="#">@x.tblArtist.name</a></h5>
+                                                                            <div class="col-md-12">
+                                                                                <font style="font-weight: bold;font-size:small;">
+                                                                                   <p class="margin-bottom-40"> @x.description </p>
+                                                                                </font>
+                                                                            </div>
+                                                                            <div class="col-md-12">
+                                                                                <font style="font-weight: bold;font-size:small;">
+                                                                                    ContactNo &nbsp;:&nbsp;<a href="#">@x.tblArtist.contactNo</a>
+                                                                                </font>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-md-12" align="right" style="padding-bottom: 15px;padding-right: 35px">
+                                                                                <font color="red" style="font-weight: bold;font-size:small;">
+                                                                                   <br /> Response Date : @x.responseDate 
+                                                                                </font>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--jbm-cv-drag-box end-->
+                    </div><!--jbm-cv-box end-->
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                    <ul class="jbm-dashboard-links">
+                        <li>
+                            <a href="@Url.Action("RecruiterProfile", "RecruiterLogin")">Profile Informations</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("UpdateRecruiter","RecruiterLogin")">Edit</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("addRequirement","RecruiterLogin")">Post a requirement</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("showRequirement","RecruiterLogin")" class="active">Requirements</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("managePassword","RecruiterLogin")">Change Password!</a>
+                        </li>
+                        <li>
+                        <li>
+                            <a href="@Url.Action("logout","RecruiterLogin")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->
+
+

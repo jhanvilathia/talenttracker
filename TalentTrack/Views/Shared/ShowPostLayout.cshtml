@@ -1,0 +1,173 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- Mirrored from demo.diothemes.com/html/jobmarket/index2.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 12 Apr 2019 16:14:25 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Job Market</title>
+    <!-- stylesheets-->
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/lib/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/lib/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/lib/select2/css/select2.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/css/main.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/css/color2.css">
+    <link rel="stylesheet" type="text/css" href="~/UserResources/assets/css/responsive.css">
+    <script src="~/UserResources/assets/js/jquery.min.js"></script>
+    <script src='../../../www.google.com/recaptcha/api.js'></script>
+
+</head>
+
+<body>
+    @{
+        var parameter = Request.QueryString["ac"];
+        //Check parameter here and display Message
+        if (parameter == "success")
+        {
+            <div class="alert alert-success alert-dismissable">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong><center><i class="fa fa-check-square-o" aria-hidden="true"></i> Your application added successfully !</center> </strong>
+            </div>
+        }
+    }
+    <header>
+        <!-- start topbar -->
+        <div class="jbm-topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 text-left">
+                        <ul class="dis-inline list-none jbm-topbar-contact">
+                            <li>
+                                <a href="tel:+0001234567890"><i class="fa fa-phone"></i>+91 8161078974</a>
+                            </li>
+                            <li>
+                                <a href="mailto:contactadmin@jobmarket.com"><i class="fa fa-envelope"></i>TalentTrackJob@gmail.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12 text-right hidden-xs hidden-sm">
+                        <ul class="dis-inline list-none  jbm-topbar-login">
+                            <li>
+                                <a href="@Url.Action("Index","Login")">Home<i class="fa fa-home" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end topbar -->
+        <!-- start menu -->
+        <div class="jbm-mennubar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                        <div class="jbm-logo">
+                            <a href="index.html">
+                                <img src="~/UserResources/assets/img/new-logo-tt.png" alt="Job Market Logo" class="img-responsive" />
+                            </a>
+                        </div>
+                        <div class="jbm-menu-icon pull-right hidden-lg">
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 302 302" xml:space="preserve"><g><rect y="36" width="302" height="30" fill="#454545" /><rect y="236" width="302" height="30" fill="#454545" /><rect y="136" width="302" height="30" fill="#454545" /></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12 text-right hidden-md hidden-sm hidden-xs">
+                        <nav class="jbm-menu-container">
+                            <ul class="jbm-menu list-none dis-inline">
+                                <li>
+                                    <a href="@Url.Action("profile","Login")">Home<i class="fa fa-home" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("artistIndex","Login")">Search<i class="fa fa-search" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("recruiterIndex","ShowRequirement")">Requirements<i class="fa fa-handshake-o" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("showArticle","Post")">Articles<i class="fa fa-newspaper-o" aria-hidden="true"></i></a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("showVideo","Post")">Videos<i class="fa fa-video-camera" aria-hidden="true"></i></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 text-right">
+                            <form class="form-inline pull-right" method="post">
+                                <div class="form-group m-r-4">
+                                    <input type="text" class="form-control" name="s" id="header-search-input" placeholder="Search here..." />
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="jbm-search-sm-btn">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end menu -->
+        <!-- start mobile menu -->
+        <div class="jbm-menu-wrap">
+            <div class="jbm-mobile-logo-wrap">
+                <div class="jbm-logo">
+                    <a href="index.html">
+                        <img src="~/UserResources/assets/img/logo.png" alt="Job Market Logo" class="img-responsive" />
+                    </a>
+                </div>
+                <div class="jbm-menu-icon pull-right">
+                    <a href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" x="0px" y="0px" viewBox="0 0 612 612" xml:space="preserve"><g><g id="cross"><g><polygon points="612,36.004 576.521,0.603 306,270.608 35.478,0.603 0,36.004 270.522,306.011 0,575.997 35.478,611.397 306,341.411 576.521,611.397 612,575.997 341.459,306.011 " fill="#454545" /></g></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="jbm-mobile-search-wrap margin-bottom-50">
+                <form class="form-inline" method="post">
+                    <div class="form-group m-r-4">
+                        <input type="text" class="form-control" name="s" id="header-search-input2" placeholder="Search here..." />
+                    </div>
+                    <div class="form-group pull-right">
+                        <button type="submit" class="jbm-search-sm-btn">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="jbm-mobile-bottom-wrap">
+                <div class="jbm-mobile-bottom-wrap-inner clearfix">
+                    <div class="mobile-username pull-left">
+                        <a href="#" class="mob-logout">LOGOUT</a>
+                        <br />
+                        <a href="#" class="mob-user">John Doe</a>
+                    </div>
+                    <div class="mobile-user-image pull-right">
+                        <img src="~/UserResources/assets/img/user-1.jpg" alt="user-image" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end mobile menu -->
+    </header>
+
+    @RenderBody()
+    <script src="~/UserResources/assets/js/jquery.min.js"></script>
+    <script type="text/javascript" src="~/UserResources/assets/js/counter.js"></script>
+    <script src="~/UserResources/assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="~/UserResources/assets/lib/slick/slick.js" type="text/javascript"></script>
+    <script src="~/UserResources/assets/lib/select2/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="~/UserResources/assets/js/custom.js" type="text/javascript"></script>
+    <script src="~/UserResources/assets/js/jquery.min.js"></script>
+</body>
+</html>

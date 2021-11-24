@@ -1,0 +1,213 @@
+﻿@model IEnumerable<TalentTrack.Models.tblRequirement>
+
+@{
+    ViewBag.Title = "recruiterIndex";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+
+<!-- section page  start -->
+<div class="jbm-page-title page-title-bg-2 padding-bottom-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span class="section-tit-line"></span>
+                <h2>
+                    <span class="fw-400">Find</span>
+                    Recruitement
+                </h2>
+                <p>
+                    <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a> &nbsp; > &nbsp;<a href="#">Recruitement</a>
+                    &nbsp; > &nbsp;Find your talent job
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- section page title start -->
+<!-- start search -->
+<div class="jbm-search-bar jbm-search-1">
+    <div class="container">
+        @using (Html.BeginForm("recruiterIndex", "ShowRequirement", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="jbm-sch-inner margin-top-85-minus">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="keyword" name="companyName" placeholder="Search Company" />
+                                    <p>(Example: Ashvi Consultancy)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    @Html.DropDownList("categoryId", ViewBag.category as SelectList, "---Select Category---", new { @class = "form-control" })
+                                    <p>(Example: Actor,Web designer)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="location" name="cityName" placeholder="Location" />
+                                    <p>(Example: Surat,Mumbai)</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <div class="form-group ">
+                                    <input type="submit" class="form-control" id="btnSearch" name="search" value="Search" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<!-- end search -->
+<!-- end section category -->
+<div class="jbm-section-jobs padding-top-80 padding-bottom-100">
+    <div class="container">
+
+        @foreach (var item in Model)
+        {
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12 jbm-job-loop">
+                    <div class="jbm-job-loop-in">
+                        <div class="row">
+                            <div class="col-md-3 col-sm-12 col-xs-12 text-left jbm-first-col">
+                                <div class="jbm-company-logo">
+                                    <img src="~/images/@item.tblRecruiter.image" height="75px" width="75px" alt="" class="media-object" />
+                                </div>
+                                <div class="jbm-job-title">
+                                    <a href="#" class="title-link">@item.tblCategory.categoryName</a>
+                                    <br />
+                                    <a href="mailto:" class="jbm-job-email">@item.tblRecruiter.companyName</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-4 text-center">
+                                <div class="jbm-job-locaction">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <br />
+                                    <a href="#">@item.tblRecruiter.tblCity.cityName</a>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-4 text-center">
+                                <div class="jbm-job-price">
+                                    <i class="fa fa-money" aria-hidden="true"></i>
+                                    <br />
+                                    <span>@item.salary/-</span>
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-4 text-center">
+                                <div class="jbm-job-price">
+                                    <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                    <br />
+                                    <span>@item.experience years</span>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3 col-xs-12 col-xs-12">
+                                <div class="jbm-job-links">
+                                    <div class="jbm-job-detail">
+                                        <a href="@Url.Action("moreInfo","ShowRequirement",new { item.requirementId })">More Info. . .</a>
+                                    </div>
+                                    <!--
+                                    <div class="jbm-job-apply">
+                                        <a href="#" class="jbm-job-apply-btn apply-btn">Quick Apply</a>
+                                    </div> -->
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        }<!--jbm-job-loop-in-->
+    </div><!--jbm-job-loop-->
+    <div class="row margin-top-40 margin-bottom-50">
+        <div class="col-xs-12 text-center">
+            <a href="#" class="jbm-loadmore">Load More Jobs</a>
+        </div>
+    </div>
+</div>
+
+
+@*<h2>recruiterIndex</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.recruiterId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.categoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.salary)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.addedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.closingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.recruiterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.categoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.addedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.closingDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.requirementId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.requirementId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.requirementId })
+            </td>
+        </tr>
+    }
+
+    </table>*@

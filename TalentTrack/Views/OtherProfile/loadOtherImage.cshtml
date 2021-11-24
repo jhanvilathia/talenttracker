@@ -1,0 +1,81 @@
+﻿@model IEnumerable<TalentTrack.Models.tblPost>
+
+@{
+    ViewBag.Title = "loadOtherImage";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                <div class="jbp-candidate-box">
+                </div><!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="jbm-cv-box margin-bottom-30">
+                        <script type="text/javascript">
+                                    $(function () {
+                                    $("#mdb-lightbox-ui").load("mdb-addons/mdb-lightbox-ui.html");
+                                    });
+                        </script>
+                        <h4>Photos</h4> <br><br>
+
+                        <div class="jbm-cv-drag-box">
+
+                            <div class="row">
+                                @foreach (var item in Model)
+                                {
+                                    <div id="mdb-lightbox-ui"></div>
+
+                                        <div class="mdb-lightbox">
+
+                                            <figure class="col-md-4 margin-top-20 margin-bottom-20">
+                                                <a href="~/images/@item.img.imageURL" data-size="1600x1067">
+                                                    <img alt="picture" src="~/images/@item.img.imageURL" class="img-responsive">
+                                                </a>
+                                            </figure>
+
+                                        </div>
+                                }
+
+                            </div>
+
+
+
+
+
+                        </div><!--jbm-cv-drag-box end-->
+                    </div><!--jbm-cv-box end-->
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            @foreach (var key in Model)
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                        <ul class="jbm-dashboard-links">
+                            <li>
+                                <a href="@Url.Action("loadOtherProfile", "OtherProfile", new { key.artistId})">Profile Informations</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherArticle", "OtherProfile", new { key.artistId })">Article</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherImage", "OtherProfile", new { key.artistId})" class="active">Images</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherVideo", "OtherProfile", new { key.artistId})">Videos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->

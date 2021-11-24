@@ -1,0 +1,187 @@
+﻿@model TalentTrack.Models.tblPost
+
+@{
+    ViewBag.Title = "articleMoreInfo";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<div class="jbm-standard-layout">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="row">
+                    <!-- left side -->
+                    <div class="col-md-9">
+                        <!-- section start -->
+                        <div class="jbm-standard-layout-in margin-bottom-80">
+                            <h3 class="text-center margin-bottom-45"><a href="#article">@Model.postTitle</a></h3>
+                            <div class="pos-relative">
+                                <a href="#"><img src="~/images/@Model.art.imageURL" width="100%" class="margin-bottom-20"></a>
+                            </div>
+                            <div class="jbm-thumb-social st6">
+                                <div class="row">
+                                    <div class="col-md-8 col-sm-8 col-xs-12 full-wdth tc">
+                                        <img src="assets/img/grid-thumb.png" alt="">
+                                        <span>Article: <a href="#">@Model.tblArtist.name</a></span>
+                                    </div>
+
+                                    <div class="col-md-4 col-sm-4 col-xs-12 tc full-wdth">
+                                        <a href="@Url.Action("likeArticle","Post",new { postid = Model.postId })">
+                                        <h5 align="center"><i class="fa fa-heart-o">&nbsp;@ViewBag.like</i></h5>
+                                        </a>
+                                    </div>
+                                    
+
+                                </div>
+                            </div>
+                            <div class="grid-discription">
+                                <h6 class="margin-bottom-30">Description</h6>
+
+                                <p class="margin-bottom-45">@Model.art.description</p>
+                            </div>
+                            <div class="blog-grid-navigation">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-left">
+                                        <p></p>
+                                        <a href="#" class="link-primary"> << Previous</a>
+                                    </div>
+                                    <div class="col-md-6 col-sm-6 col-xs-6 text-right">
+                                        <p></p>
+                                        <a href="#" class="link-primary">Nexts >></a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="jbm-comments">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="jbm-section-title-2 margin-top-100 margin-bottom-40">
+                                            <h4>Latest Comments</h4>
+                                            <span class="section-tit-line-2"></span>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <div class="jbm-comments-cont">
+
+                                            @foreach(var c in Model.tblPostComments)
+                                            {
+                                                <div class="media jbm-comments-loop">
+                                                    <div class="media-left">
+                                                        <a href="#">
+                                                        <img class="media-object" src="~/images/@c.tblArtist.image" height="100px" width="100px" alt="media-object" />
+                                                        </a>
+                                                    </div>
+
+                                                    <div class="media-body">
+                                                        <h5 class="media-heading">@c.tblArtist.userName</h5>
+                                                        <p>@c.comment</p>
+                                                        <span align="right">&nbsp;@c.createdDate</span>
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            @using (Html.BeginForm("articleComment", "Post",new { postid = Model.postId}, FormMethod.Post))
+                            {
+                                <input type="hidden" id="postID" value="" />
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="jbm-section-title-2 margin-top-100 margin-bottom-40">
+                                            <h4>Leave Comments</h4>
+                                            <span class="section-tit-line-2"></span>
+                                        </div>
+                                        <div class="jbm-comments-form">
+                                            <div class="company-details margin-bottom-30 change-pass padding-bottom-60 border-0">
+                                                <!-- row start -->
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <div class="form-group">
+                                                            <textarea name="comment" id="comment" class="margin-bottom-60 form-control"></textarea>
+                                                            <label for="comment">Comment</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- row start -->
+                                                <div class="row">
+                                                    <div class="col-md-6 col-sm-6 col-xs-6 full-wdth">
+                                                        <button type="submit" class="jbm-button jbm-button-3">Submit Comment</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <hr>
+                            <div class="trending-posts">
+                                <div class="row">
+                                    <div class="col-xs-12">
+                                        <div class="jbm-section-title-2 margin-top-100 margin-bottom-40">
+                                            <h4>Tending Articles</h4>
+                                            <span class="section-tit-line-2"></span>
+                                        </div>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <?php
+                                    //print_r($articleinfo->related);
+                                    foreach ($articleinfo->related as $r)
+                                    {
+                                    ?>
+                                    <div class="best-candidate-img">
+
+                                        <div class="col-md-4 col-sm-4 col-xs-6 full-wdth">
+                                            <div class="best-candidate-box text-center">
+                                                <img src="<?= base_url('images/'.$r->imageURL)?>" alt="">
+                                                <span class="best-candi-time"><?=$r->categoryName?></span>
+                                                <h5><a href="#"><?=$r->postTitle?></a></h5>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <?php
+                                    }
+                                    ?>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- section end -->
+                    </div>
+                    <!-- sidebar start -->
+                    <div class="col-md-3">
+                        <div class="jbm-sidebar">
+                            <div class="jbm-author-outer margin-bottom-50">
+                                <div class="jbm-author-inner padding-top-30">
+                                    <img src="assets/img/grid-thumb.png" alt="" class="margin-auto padding-bottom-30">
+                                    <h6 class="text-center padding-bottom-10">About Author</h6>
+                                    <span class="section-tit-line text-center display-block margin-auto"></span>
+                                    <p class="text-center padding-top-40 padding-bottom-40">
+                                        @Model.tblArtist.description
+                                    </p>
+                                </div>
+                                <ul>
+                                    <li>
+                                        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                    <!-- sidebar ends -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr>

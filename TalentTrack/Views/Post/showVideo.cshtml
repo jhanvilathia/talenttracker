@@ -1,0 +1,104 @@
+﻿@model IEnumerable<TalentTrack.Models.tblPost>
+
+@{
+    ViewBag.Title = "showVideo";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<script type="text/javascript">
+    $('#modal1').on('hidden.bs.modal', function (e) {
+    // do something...
+    $('#modal1 iframe').attr("src", $("#modal1 iframe").attr("src"));
+    });
+
+    $('#modal6').on('hidden.bs.modal', function (e) {
+    // do something...
+    $('#modal6 iframe').attr("src", $("#modal6 iframe").attr("src"));
+    });
+
+    $('#modal4').on('hidden.bs.modal', function (e) {
+    // do something...
+    $('#modal4 iframe').attr("src", $("#modal4 iframe").attr("src"));
+    });
+</script>
+
+<div class="content-list">
+    <div class="container">
+        <div class="row">
+            @foreach(var item in Model)
+            {
+                <div class="col-md-9">
+                <!-- section 1 -->
+                <div class="jbm-blog-list margin-bottom-80">
+                    <div class="media">
+                        <div class="media-center">
+                            <div class="blog-post-thumb">
+                                <div class="col-lg-7 col-md-12 mb-8">
+                                    <div class="modal fade" id="modal1-@item.vdo.videoId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg" role="document">
+
+                                            <!--Content-->
+                                            <div class="modal-content">
+
+                                                <!--Body-->
+                                                <div class="modal-body mb-0 p-0">
+
+                                                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+
+                                                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@item.vdo.videoURL"
+                                                                allowfullscreen></iframe>
+
+                                                    </div>
+
+                                                </div>
+
+                                                <!--Footer-->
+                                                <div class="modal-footer justify-content-center">
+                                                    <button type="button" class="btn btn-grd-inverse btn-round waves-effect waves-light btn-md ml-4" data-dismiss="modal">Close</button>
+                                                </div>
+
+
+
+
+                                            </div>
+                                            <!--/.Content-->
+
+                                        </div>
+                                    </div>
+                                    <!--Modal: Name-->
+
+                                    <a>
+                                        <img class="img-fluid z-depth-1 margin-top-20 margin-bottom-30" align="right" height="250px" width="500px" src="http://img.youtube.com/vi/@item.vdo.videoURL/0.jpg" alt="video"
+                                             data-toggle="modal" data-target="#modal1-@item.vdo.videoId">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading margin-bottom-50 padding-top-15"><a href="#">@item.postTitle</a></h5>
+                            <p class="margin-bottom-40">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.</p>
+                            <a href="@Url.Action("videoMoreInfo","Post",new { postid= item.postId })">More Info. . .</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+
+            <!-- section 1 -->
+
+            <div class="jbm-paginate margin-bottom-100 text-center">
+                <ul>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                </ul>
+                <a href="#"><i class="fa fa-angle-left text-left float-left" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-angle-right text-right float-right" aria-hidden="true"></i></a>
+            </div>
+        </div>
+
+
+    </div>
+</div>

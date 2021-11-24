@@ -1,0 +1,131 @@
+﻿@model IEnumerable<TalentTrack.Models.tblPost>
+
+@{
+    ViewBag.Title = "loadOtherVideo";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                <div class="jbp-candidate-box">
+                </div><!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="row jbm-cv-box margin-bottom-30">
+
+                        <script type="text/javascript">
+                                        $('#modal1').on('hidden.bs.modal', function (e) {
+                                    // do something...
+                                    $('#modal1 iframe').attr("src", $("#modal1 iframe").attr("src"));
+                                    });
+
+                                    $('#modal6').on('hidden.bs.modal', function (e) {
+                                    // do something...
+                                    $('#modal6 iframe').attr("src", $("#modal6 iframe").attr("src"));
+                                    });
+
+                                    $('#modal4').on('hidden.bs.modal', function (e) {
+                                    // do something...
+                                    $('#modal4 iframe').attr("src", $("#modal4 iframe").attr("src"));
+                                    });
+                        </script>
+
+                        <h4>videos</h4> <br><br>
+                        <div class="jbm-cv-drag-box">
+                            <div class="row">
+
+                                <!-- Grid column -->
+                                @foreach (var item in Model)
+                                {
+                                    <div class="col-lg-4 col-md-12 mb-4">
+                                        <div class="modal fade" id="modal1-@item.vdo.videoId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+
+                                                <!--Content-->
+                                                <div class="modal-content">
+
+                                                    <!--Body-->
+                                                    <div class="modal-body mb-0 p-0">
+
+                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+
+                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@item.vdo.videoURL"
+                                                                    allowfullscreen></iframe>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                    <!--Footer-->
+                                                    <?php
+                                                    foreach ($key->like as $l)
+                                                    {
+
+                                                    ?>
+                                                    <div class="row">
+                                                        <div class="col-md-4">
+                                                            <i class="fa fa-heart btn-lg"></i> <?=$l->TotalLike ?>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                    <div class="modal-footer justify-content-center">
+                                                        <button type="button" class="btn btn-primary btn-round waves-effect waves-light btn-md ml-4" data-dismiss="modal">Close</button>
+                                                    </div>
+
+
+
+
+                                                </div>
+                                                <!--/.Content-->
+
+                                            </div>
+                                        </div>
+                                        <!--Modal: Name-->
+
+                                        <a>
+                                            <img class="img-fluid z-depth-1 margin-top-20 margin-bottom-30" height="200px" width="250px" src="http://img.youtube.com/vi/@item.vdo.videoURL/0.jpg" alt="video"
+                                                 data-toggle="modal" data-target="#modal1-@item.vdo.videoId">
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div><!--jbm-cv-drag-box end-->
+
+                    </div><!--jbm-cv-box end-->
+
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            @foreach (var key in Model)
+            {
+                <div class="col-md-3 col-sm-12 col-xs-12">
+                    <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                        <ul class="jbm-dashboard-links">
+                            <li>
+                                <a href="@Url.Action("loadOtherProfile", "OtherProfile", new { key.artistId})">Profile Informations</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherArticle", "OtherProfile", new { key.artistId })">Article</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherImage", "OtherProfile", new { key.artistId})">Images</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("loadOtherVideo", "OtherProfile", new { key.artistId})" class="active">Videos</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            }
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->

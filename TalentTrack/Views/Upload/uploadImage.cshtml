@@ -1,0 +1,65 @@
+﻿@model TalentTrack.Models.tblImage
+
+@{
+    ViewBag.Title = "uploadImage";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-12 col-sm-12 col-xs-12 pull-right">
+                <!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="jbm-cv-box margin-bottom-30">
+                        <h4>Post Image</h4> <br><br>
+                        <div>
+                            <div class="jbm-cv-drag-box">
+                                @using (Html.BeginForm("uploadImage", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <!-- row start -->
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-5 col-sm-6 col-xs-12">
+                                            <div class="form-group">
+                                                <input type="text" name="postTitle" id="name" class="form-control">
+                                                <label for="name">Post Title*</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <br>
+                                            <label for="artistfile">Choose your photo*</label>
+                                            <div class="form-group">
+                                                <input type="file" name="artistImage"><br><br>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-1"></div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-1"></div>
+                                        <div class="col-md-2 col-sm-6 col-xs-12 tct">
+                                            <input type="submit" name="btnUpdate" value="Upload" class="jbm-btn btn btn-sm btn-danger">
+                                        </div>
+                                        <div class="col-md-9 col-sm-6 col-xs-12 text-right tct">
+                                            <p><font size="2px" color="red">(All fields marked with an * are mandatory)</font></p>
+                                        </div>
+                                    </div>
+                                }
+                            </div><!--jbm-cv-drag-box end-->
+                        </div>
+                    </div><!--jbm-cv-box end-->
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->

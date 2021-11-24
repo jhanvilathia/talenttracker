@@ -1,0 +1,208 @@
+﻿@model TalentTrack.Models.tblRequirement
+
+@{
+    ViewBag.Title = "moreInfo";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<!-- section page title start -->
+<div class="jbm-page-title page-title-bg-2">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center">
+                <span class="section-tit-line"></span>
+                <h2>@Model.tblRecruiter.companyName</h2>
+                <p>
+                    <a href="#"><i class="fa fa-home" aria-hidden="true"></i></a> &nbsp; > &nbsp;<a href="#">Candidates</a>
+                    &nbsp; > &nbsp;Single page
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- section page title start -->
+<!-- job title info -->
+<div class="job-info padding-top-60">
+    <div class="container">
+        <div class="row margin-bottom-60">
+            <div class="col-md-7 col-sm-6 col-xs-6 full-wdth">
+                Left-aligned
+                <div class="media">
+                    <div class="media-left">
+                        <img src="~/images/@Model.tblRecruiter.image" height="75px" width="75px" alt="" class="media-object" />
+                    </div>
+                    <div class="media-body style2">
+                        <h5 class="media-heading style2">@Model.tblRecruiter.name</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5 col-sm-6 col-xs-6 full-wdth">
+                <div class="candidate-bottom padding-top-30 text-right stl2">
+                    <a href="@Url.Action("applyJob","ShowRequirement",new { Model.requirementId })" class="jbm-button apply-btn jbm-button-3">Apply for Requirement</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- candidate personal info -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="candidate-personal-info jbm-relative jbm-accordion" style="border-color: black">
+                    <div class="row">
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;<font color="red">@Model.tblRecruiter.userName</font></a>
+                        </div>
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;<font color="red">@Model.tblRecruiter.website</font></a>
+                        </div>
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i>&nbsp;<font color="red">@Model.tblRecruiter.recemail</font></a>
+                        </div>
+                    </div>
+                    <div class="row jbm-dis-none candidate-personal-detail jbm-accordion-more info-active" style="display:block">
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-phone" aria-hidden="true"></i>&nbsp;<font color="red">+ 91-@Model.tblRecruiter.contactNo</font></a>
+                        </div>
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp;<font color="red">@Model.tblRecruiter.tblCity.cityName</font></a>
+                        </div>
+                        <div class="col-md-4 margin-bottom-30">
+                            <a href="#"><i class="fa fa-calendar-check-o" aria-hidden="true"></i>&nbsp;<font color="red">@Model.tblRecruiter.registrationDate</font></a>
+                        </div>
+                    </div>
+                    <a href="#" class="expand-candi-info">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- candidate personal info ends -->
+    <!-- Brief Description -->
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="jbm-job-content">
+                    <h5>Company Profile</h5>
+                    <p>
+                        @Model.tblRecruiter.description
+                    </p>
+                    <h5>Job Description</h5>
+                    <p>
+                        @Model.description
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tag">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-6 col-xs-12">
+                            <div class="tag-inner-cont">
+                                <i class="fa fa-tags" aria-hidden="true"></i>&nbsp;<a href="#">web designer</a>,<a href="#">marketing companyA</a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12 text-right">
+                            <ul class="list-none jbm-social-icon-1 jbm-social-color-2">
+                                <li>
+                                    <a href="#"><i class="fa fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-twitter"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-linkedin"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-pinterest"></i></a>
+                                </li>
+                                <li>
+                                    <a href="#"><i class="fa fa-behance"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.BeginForm("applyJob", "ShowRequirement", new { Model.requirementId })
+{
+    <div class="apply-job-popup">
+        <div class="popup-overlay"></div>
+        <!-- Candidate popup -->
+        <div class="popup">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="row">
+                        <div class="col-md-5 jbm-login-side applyy">
+                            <i class="fa fa-lightbulb-o margin-bottom-50" aria-hidden="true"></i>
+                            <span class="section-tit-line"></span>
+                            <h3 class="margin-bottom-60">Apply for Job</h3>
+                            <ul class="new-signup">
+                                <li>
+                                    <a href="#">New User? </a>
+                                </li>
+                                <li>
+                                    <a href="#">Sign Up</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-7 jbm-form">
+                            <div class="jbm-field margin-top-100 register">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="fname" id="name" class="form-control">
+                                        <label for="name">First Name*</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="email-address" id="email-address" class="form-control">
+                                        <label for="email-address">Email Address*</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <input type="text" name="number" id="number" class="form-control">
+                                        <label for="number">Phone Number*</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea name="description" class="margin-bottom-60 form-control"></textarea>
+
+                                        <label for="number5">Description*</label>
+                                    </div>
+                                </div>
+                                <div class="g-recaptcha" data-sitekey="6LdcpCoUAAAAAH7ei-XX2bHUWul6Ppl5wYm1Y7Ne"></div>
+                                <button type="submit" class="jbm-button jbm-button-3 jbm-hover margin-bottom-15">
+                                    Apply for Job
+                                </button>
+                                <div class="terms">
+                                    <input type="checkbox" id="c1" name="cc">
+                                    <label for="c1"><span></span></label>
+                                    <small>I have read and agree with <a href="#">Terms & Conditions</a></small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="close-btn">
+                            <i class="fa fa-close"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Candidate popup -->
+    </div><!--apply job popup end-->
+}

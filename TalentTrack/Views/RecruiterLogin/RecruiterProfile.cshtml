@@ -1,0 +1,137 @@
+﻿@model TalentTrack.Models.tblRecruiter
+
+@{
+    ViewBag.Title = "RecruiterProfile";
+    Layout = "~/Views/Shared/RecruiterLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                <div class="jbp-candidate-box">
+                    <h4 class="jbm-heading">Profile</h4>
+                    <span class="section-tit-line-2 margin-bottom-40"></span>
+                </div><!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="jbm-cv-box margin-bottom-30">
+                        <h4>Recruiter Information</h4> <br><br>
+
+                        <div class="jbm-cv-drag-box">
+                            <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12" align="center">
+                                            <img height="150px" width="140px" class="img-circle" src="~/images/@Model.image"><br><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-10" align="center">
+                                            <font color="black" size="4px" style="font-weight: bold">
+                                                <font color='DarkRed' size='6px'>Welcome &nbsp;</font>@Model.name
+                                            </font>
+                                            <br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Username</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.userName</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Company Name</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.companyName</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Description</font><br>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <font color="black" size="3px">@Model.description</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Contact No</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.contactNo</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Email</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.recemail</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">Website</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.website</font><br><br>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-md-3" align="center">
+                                            <font color="gray" size="3px">City</font><br>
+                                        </div>
+                                        <div class="col-md-9 pull-right">
+                                            <font color="black" size="3px">@Model.tblCity.cityName</font><br><br>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div><!--jbm-cv-drag-box end-->
+                    </div><!--jbm-cv-box end-->
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                    <ul class="jbm-dashboard-links">
+                        <li>
+                            <a href="@Url.Action("RecruiterProfile","RecruiterLogin")" class="active">Profile Informations</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("UpdateRecruiter","RecruiterLogin")">Edit</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("addRequirement","RecruiterLogin")">Post a requirement</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("showRequirement","RecruiterLogin")">Requirements</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("managePassword","RecruiterLogin")">Change Password!</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("logout","RecruiterLogin")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->

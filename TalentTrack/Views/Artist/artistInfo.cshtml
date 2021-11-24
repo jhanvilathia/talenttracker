@@ -1,0 +1,396 @@
+﻿@model TalentTrack.Models.tblArtist
+
+@{
+    ViewBag.Title = "artistInfo";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!-- CB starts -->
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="card">
+
+                    <div class="card-block">
+                        <center>
+                                <div class="media row">
+
+                                    <div class="media-body">
+                                        <h2>Information</h2> <br> <br>
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Name:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.name
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">DOB:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.DOB
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Gender:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.gender
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Contcact No:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.contactNo
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Website:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.website
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">City:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                @Model.tblCity.cityName
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <br> <br>
+
+                        </center>
+                        <div class="row m-b-30">
+                            <div class="col-lg-12">
+
+
+                                <ul class="nav nav-tabs md-tabs" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" data-toggle="tab" href="#article" role="tab"><i class='fa fa-newspaper'></i>&nbsp;<font size="3px">Article</font></a>
+                                        <div class="slide"></div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#video" role="tab"><i class='fa fa-video-camera'></i>&nbsp;<font size="3px">Videos</font></a>
+                                        <div class="slide"></div>
+                                    </li>
+
+                                    <li class="nav-item">
+                                        <a class="nav-link" data-toggle="tab" href="#gallery1" role="tab"><i class="ti-instagram"></i>&nbsp;<font size="3px">Photos</font></a>
+                                        <div class="slide"></div>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content card-block">
+
+                                    <div class="tab-pane active" id="article" role="tabpanel">
+
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3>Articles</h3>
+                                            </div>
+                                            <div class="card-block">
+                                           
+                                                @foreach(var x in ViewBag.article)
+                                                {
+                                                <div class="card" style="background-color: LightCoral">
+                                                    <div class="card-block">
+                                                        <div class="row">
+                                                            <div class="col-md-2" align="center">
+                                                                <img class="img-thumbnail" height="200" width="200" src="~/images/@x.art.imageURL">
+                                                            </div>
+                                                            <div class="col-md-10">
+                                                                <div class="card" style="background-color: PapayaWhip">
+                                                                    <div class="card-block">
+                                                                        @x.art.description
+                                                                        <div class="form-group row">
+                                                                            <div class="col-md-12" align="right">
+                                                                                <font color="maroon">
+                                                                                    @x.createdDate
+                                                                                </font>
+                                                                            </div>
+                                                                        </div>
+
+
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="tab-pane" id="video" role="tabpanel">
+                                        <script type="text/javascript">
+		                                            $('#modal1').on('hidden.bs.modal', function (e) {
+                                              // do something...
+                                              $('#modal1 iframe').attr("src", $("#modal1 iframe").attr("src"));
+                                            });
+
+                                            $('#modal6').on('hidden.bs.modal', function (e) {
+                                              // do something...
+                                              $('#modal6 iframe').attr("src", $("#modal6 iframe").attr("src"));
+                                            });
+
+                                            $('#modal4').on('hidden.bs.modal', function (e) {
+                                              // do something...
+                                              $('#modal4 iframe').attr("src", $("#modal4 iframe").attr("src"));
+                                            });
+                                        </script>
+                                        <div class="card" style="background-color: #e0ebeb">
+                                            <div class="card-block">
+                                                <div class="card-header">
+                                                    <h3>Videos</h3>
+                                                </div>
+                                                <div class="row">
+
+                                                    <!-- Grid column -->
+                                                 @foreach(var v in ViewBag.video)
+                                                 {
+                                                    <div class="col-lg-4 col-md-12 mb-4">
+                                                        <div class="modal fade" id="modal1-@v.vdo.videoId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                             aria-hidden="true">
+                                                            <div class="modal-dialog modal-lg" role="document">
+
+                                                                <!--Content-->
+                                                                <div class="modal-content">
+
+                                                                    <!--Body-->
+                                                                    <div class="modal-body mb-0 p-0">
+
+                                                                        <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+
+                                                                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@v.vdo.videoURL"
+                                                                                    allowfullscreen></iframe>
+
+                                                                        </div>
+
+                                                                    </div>
+
+                                                                    <!--Footer-->
+                                                                    <?php
+                                                                    foreach ($key->like as $l)
+                                                                    {
+
+                                                                    ?>
+                                                                    <div class="row">
+                                                                        <div class="col-md-4">
+                                                                            <i class="fa fa-heart btn-lg"></i> <?=$l->TotalLike ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <?php
+                                                                    }
+                                                                    ?>
+                                                                    <div class="modal-footer justify-content-center">
+                                                                        <button type="button" class="btn btn-grd-inverse btn-round waves-effect waves-light btn-md ml-4" data-dismiss="modal">Close</button>
+                                                                    </div>
+
+
+
+
+                                                                </div>
+                                                                <!--/.Content-->
+
+                                                            </div>
+                                                        </div>
+                                                        <!--Modal: Name-->
+
+                                                        <a>
+                                                            <img class="img-fluid z-depth-1" src="http://img.youtube.com/vi/@v.vdo.videoURL" alt="video"
+                                                                 data-toggle="modal" data-target="#modal1-@v.vdo.videoId">
+                                                        </a>
+                                                    </div>
+                                                  }
+
+
+                                                </div>
+                                                <!-- Grid row -->
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="gallery1" role="tabpanel">
+                                        <style type="text/css">
+ 		                                                .gallery {
+                                                -webkit-column-count: 3;
+                                                -moz-column-count: 3;
+                                                column-count: 3;
+                                                -webkit-column-width: 33%;
+                                                -moz-column-width: 33%;
+                                                column-width: 33%; }
+                                                .gallery .pics {
+                                                -webkit-transition: all 350ms ease;
+                                                transition: all 350ms ease; }
+                                                .gallery .animation {
+                                                -webkit-transform: scale(1);
+                                                -ms-transform: scale(1);
+                                                transform: scale(1); }
+
+                                                media (max-width: 450px) {
+                                                .gallery {
+                                                -webkit-column-count: 1;
+                                                -moz-column-count: 1;
+                                                column-count: 1;
+                                                -webkit-column-width: 100%;
+                                                -moz-column-width: 100%;
+                                                column-width: 100%;
+                                                }
+                                                }
+
+                                                media (max-width: 400px) {
+                                                .btn.filter {
+                                                padding-left: 1.1rem;
+                                                padding-right: 1.1rem;
+                                                }
+                                                }
+                                        </style>
+
+                                        <script type="text/javascript">
+ 		                                    $(function() {
+		                                    var selectedClass = "";
+		                                    $(".filter").click(function(){
+		                                    selectedClass = $(this).attr("data-rel");
+		                                    $("#gallery").fadeTo(100, 0.1);
+		                                    $("#gallery div").not("."+selectedClass).fadeOut().removeClass('animation');
+		                                    setTimeout(function() {
+		                                    $("."+selectedClass).fadeIn().addClass('animation');
+		                                    $("#gallery").fadeTo(300, 1);
+		                                    }, 300);
+		                                    });
+		                                    });
+                                        </script>
+
+                                        <script type="text/javascript">
+	                                        $(document).ready(function(){
+
+                                            loadGallery(true, 'a.thumbnail');
+
+                                            //This function disables buttons when needed
+                                            function disableButtons(counter_max, counter_current){
+                                                $('#show-previous-image, #show-next-image').show();
+                                                if(counter_max == counter_current){
+                                                    $('#show-next-image').hide();
+                                                } else if (counter_current == 1){
+                                                    $('#show-previous-image').hide();
+                                                }
+                                            }
+
+                                        function loadGallery(setIDs, setClickAttr){
+                                            var current_image,
+                                                selector,
+                                                counter = 0;
+
+                                            $('#show-next-image, #show-previous-image').click(function(){
+                                                if($(this).attr('id') == 'show-previous-image'){
+                                                    current_image--;
+                                                } else {
+                                                    current_image++;
+                                                }
+
+                                                selector = $('[data-image-id="' + current_image + '"]');
+                                                updateGallery(selector);
+                                            });
+
+                                            function updateGallery(selector) {
+                                                var $sel = selector;
+                                                current_image = $sel.data('image-id');
+                                                $('#image-gallery-caption').text($sel.data('caption'));
+                                                $('#image-gallery-title').text($sel.data('title'));
+                                                $('#image-gallery-image').attr('src', $sel.data('image'));
+                                                disableButtons(counter, $sel.data('image-id'));
+                                            }
+
+                                            if(setIDs == true){
+                                                $('[data-image-id]').each(function(){
+                                                    counter++;
+                                                    $(this).attr('data-image-id',counter);
+                                                });
+                                            }
+                                            $(setClickAttr).on('click',function(){
+                                                updateGallery($(this));
+                                            });
+                                        }
+                                    });
+                                        </script>
+
+                                        <div class="card">
+                                            <div class="card-block">
+
+                                                <div class="card-header">
+                                                    <h3>Gallery</h3>
+                                                </div>
+
+
+                                                <!-- Grid row -->
+                                                <div class="gallery" id="gallery">
+                                                    
+                                                     @foreach(var i in ViewBag.image)
+                                                     {
+                                                        <div class="modal fade" id="image-gallery-<?php echo $key->imageID?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">X</span><span class="sr-only">Close</span></button>
+                                                                        <h4 class="modal-title" id="image-gallery-title"></h4>
+                                                                    </div>
+
+                                                                    <div class="modal-body">
+                                                                        <img id="image-gallery-image" class="img-fluid" src="">
+                                                                    </div>
+
+
+                                                                    <div class="modal-footer">
+
+                                                                        <div class="col-md-2">
+                                                                            <button type="button" class="btn btn-primary" id="show-previous-image">Previous</button>
+                                                                        </div>
+
+                                                                        <div class="col-md-8 text-right" id="image-gallery-caption">
+                                                                            This text will be overwritten by jQuery
+                                                                        </div>
+
+                                                                        <div class="col-md-2">
+                                                                            <button type="button" id="show-next-image" class="btn btn-default">Next</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="mb-3 pics animation all 2">
+                                                            <a class="thumbnail" href="#" data-image-id="<?php echo $key->imageID?>" data-toggle="modal" data-title="This is my title" data-caption="Some lovely red flowers" data-image="~/images/@i.img.imageURL" data-target="#image-gallery-<?php echo $key->imageID?>">
+                                                                <img class="img-fluid" src="~/images/@i.img.imageURL" alt="Card image cap">
+                                                            </a>
+                                                        </div>
+                                                        }
+
+
+                                                </div>
+                                               
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="styleSelector">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

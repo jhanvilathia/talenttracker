@@ -1,0 +1,179 @@
+﻿@model IEnumerable<TalentTrack.Models.tblPost>
+
+@{
+    ViewBag.Title = "artistVideo";
+    Layout = "~/Views/Shared/ProfileLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+                <div class="jbp-candidate-box">
+                </div><!--jbp-message-box end-->
+                <div class="jbm-canidate-applications">
+                    <div class="row jbm-cv-box margin-bottom-30">
+
+                        <script type="text/javascript">
+                                        $('#modal1').on('hidden.bs.modal', function (e) {
+                                    // do something...
+                                    $('#modal1 iframe').attr("src", $("#modal1 iframe").attr("src"));
+                                    });
+                        </script>
+                        
+                        <script>
+                            var videoId = 'videoTag0';
+                            var sourceId = 'videoSrc0';
+                            var newmp4 = "";
+
+                            $(".video-btn").click(function () {
+                                var video = $(this).data("src");
+                                newmp4 = "@Url.Content("~/videos/")" + video;
+                                $('#' + videoId).get(0).pause();
+                                $('#' + sourceId).attr('src', newmp4);
+                                $('#' + videoId).get(0).load();
+                                $('#' + videoId).get(0).play();
+                                $("#videoTag0").attr("controls", true);
+                            });
+
+                            function videoModalClose() {
+                                $("#videoTag0").get(0).pause();
+                            }
+
+                            $('#myModal').on('hidden.bs.modal', function () {
+                                videoModalClose();
+                            });
+
+                        </script>
+
+
+                        <h4>videos</h4> <br><br>
+                        <div class="jbm-cv-drag-box">
+                            <div class="row">
+
+                                <!-- Grid column -->
+                                @foreach (var item in Model)
+                                {
+                                    if (item.vdo.videoType == 0)
+                                    {
+                                        <div class="col-lg-4 col-md-12 mb-4">
+                                            <div class="modal fade" id="modal1-@item.vdo.videoId" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <!--Content-->
+                                                    <div class="modal-content">
+
+                                                        <!--Body-->
+                                                        <div class="modal-body mb-0 p-0">
+
+                                                            <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/@item.vdo.videoURL"
+                                                                        allowfullscreen></iframe>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <!--Footer-->
+                                                        
+                                                       
+                                                       
+                                                        <div class="modal-footer justify-content-center">
+                                                            <button type="button" class="btn btn-primary btn-round waves-effect waves-light btn-md ml-4" data-dismiss="modal">Close</button>
+                                                        </div>
+
+
+
+
+                                                    </div>
+                                                    <!--/.Content-->
+
+                                                </div>
+                                            </div>
+                                            <!--Modal: Name-->
+
+                                            <a>
+                                                <img class="img-fluid z-depth-1 margin-top-20 margin-bottom-30" height="200px" width="250px" src="http://img.youtube.com/vi/@item.vdo.videoURL/0.jpg" alt="video"
+                                                     data-toggle="modal" data-target="#modal1-@item.vdo.videoId">
+                                            </a>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="col-lg-4 col-md-12 mb-4">
+                                            <ul>
+                                                <li>
+                                                    <a class="video-btn" data-src="@item.vdo.videoURL" data-toggle="modal" data-target="#myModal1-@item.vdo.videoId">@item.vdo.videoURL</a>
+                                                </li>
+                                            </ul>
+                                        
+                                <div class="modal fade" id="myModal-@item.vdo.videoId" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-body">
+                                                <button type="button" onclick="videoModalClose()" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
+                                                    <video id="videoTag0" width="320" height="240">
+                                                        <source id="videoSrc0" type="video/mp4" />
+                                                    </video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @*<img class="img-fluid z-depth-1 margin-top-20 margin-bottom-30" height="200px" width="250px" src="~/videos/@item.vdo.videoURL" alt="video"
+            data-toggle="modal" data-target="#myModal1-@item.vdo.videoId">*@
+
+
+
+                                </div>
+                            </div>
+                                            }
+                                            }
+                                        </div>
+                                    </div><!--jbm-cv-drag-box end-->
+
+                    </div><!--jbm-cv-box end-->
+
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                    <ul class="jbm-dashboard-links">
+                        <li>
+                            <a href="@Url.Action("profile","Login")">Profile Informations</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("UpdateArtist","Login")">Edit Profile</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("artistArticle","Login")">Article</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("artistImage","Login")">Images</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("artistVideo","Login")" class="active">Videos</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("managePassword","Login")">Change Password!</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("logout","login")">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->
+
+

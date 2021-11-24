@@ -1,0 +1,189 @@
+﻿@model TalentTrack.Models.tblArtist
+
+@{
+    ViewBag.Title = "loadOtherProfile";
+    Layout = "~/Views/Shared/ShowPostLayout.cshtml";
+}
+
+<!-- employer dashboard -->
+<div class="jbm-emp-dashboard pad-xs-top-60">
+    <div class="container">
+        <div class="row margin-bottom-100">
+            <!-- right section -->
+            <div class="col-md-9 col-sm-12 col-xs-12 pull-right">
+
+                <div class="jbm-canidate-applications">
+                    <div class="jbm-cv-box margin-bottom-30">
+                        <h4>Artist Information</h4> <br><br>
+
+                        <div class="jbm-cv-drag-box">
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                    <div class="col-md-4" align="center">
+                                        <img height="150px" width="150px" class="img-circle" src="~/images/@Model.image"> <br><br><br>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="jbm-cv-box margin-bottom-30">
+                                            <div class="row">
+                                                <div class="col-md-4" align="center">
+                                                    <h5>@ViewBag.opost</h5>
+                                                    <h6>Post</h6>
+                                                </div>
+                                                <div class="col-md-4" align="center">
+                                                    <h5>@ViewBag.ofollowers</h5>
+                                                    <h6>Followers</h6>
+                                                </div>
+                                                <div class="col-md-4" align="center">
+                                                  <h5>@ViewBag.ofollowing</h5>
+                                                  <h6>Following</h6>
+                                                </div>
+                                            </div>
+
+                                            <div class="row m-t-30">
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-10" align="right">
+                                                    <br>
+
+                                                    @if (ViewBag.check != null)
+                                                    {
+                                                        <a href="@Url.Action("follow","OtherProfile",new { Model.artistId })" class="jbm-btn btn btn-sm btn-default text-center" id="btnSubmit" style="width: 400px;">
+                                                            <font color="black" size="3px">Following</font>
+                                                        </a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="@Url.Action("follow","OtherProfile",new { Model.artistId })" class="jbm-btn btn btn-sm btn-primary text-center" id="btnSubmit" style="width: 400px;"><font color="white" size="3px">Follow</font>
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5" align="center">
+                                        <font color="black" size="5px" style="font-weight: bold">
+                                            @Model.name |
+                                        </font>
+                                        <font color="DimGray" size="4px" style="font-weight: initial;">
+                                            @Model.tblCategory.categoryName
+                                        </font>
+                                        <br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">
+                                            @Model.tblCity.cityName , @Model.tblCity.tblState.stateName
+                                        </font>
+                                        <br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Username</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.userName</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Description</font><br>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <font color="black" size="3px">@Model.description</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">DOB</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.DOB</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Gender</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.gender</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Contact No</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.contactNo</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Email</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.email</font><br><br>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-3" align="center">
+                                        <font color="gray" size="3px" style="font-weight: bold">Website</font><br>
+                                    </div>
+                                    <div class="col-md-9 pull-right">
+                                        <font color="black" size="3px">@Model.website</font><br><br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--jbm-cv-drag-box end-->
+                    </div><!--jbm-cv-box end-->
+
+                </div><!--jbm-canidate-applications end-->
+            </div>
+            <!-- right section -->
+            <!-- Emp sidebar -->
+            <?php
+            foreach ($artistdata as $a)
+            {
+            ?>
+            <div class="col-md-3 col-sm-12 col-xs-12">
+                <div class="jbm-emp-sidebar padding-bottom-50 padding-top-30">
+                    <ul class="jbm-dashboard-links">
+                        <li>
+                            <a href="@Url.Action("loadOtherProfile","OtherProfile",new { Model.artistId })" class="active">Profile Informations</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("loadOtherArticle","OtherProfile",new { Model.artistId })">Article</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("loadOtherImage", "OtherProfile", new { Model.artistId})">Images</a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("loadOtherVideo", "OtherProfile", new { Model.artistId})">Videos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <?php
+            }
+            ?>
+
+            <!-- Emp sidebar -->
+        </div>
+    </div>
+</div>
+<!-- employer dashboard -->

@@ -1,0 +1,177 @@
+﻿@model TalentTrack.Models.tblRecruiter
+
+@{
+    ViewBag.Title = "requirementInfo";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<!-- CB starts -->
+<div class="pcoded-inner-content">
+    <div class="main-body">
+        <div class="page-wrapper">
+            <div class="page-body">
+                <div class="card">
+                    <!-- 	<div class="card-header">
+                          <h3>Admin Profile</h3>
+                      </div> -->
+                    <div class="card-block">
+                        <center>
+                            
+
+                                <h3 class="mt-0">Information</h3> <br> <br>
+
+
+                                <div class="card" style="background-color: whitesmoke">
+                                    <div class="card-block">
+
+                                        <img height="100px" width="100px" class="img-circle" src="~/images/@Model.image">
+                                        <br> <br>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Name:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.name
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">City:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.tblCity.cityName
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Contact No:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.contactNo
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Email:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.recemail
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Company Name:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.companyName
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <h4 class="col-sm-4" align="right">Registration Date:</h4>
+                                            <div class="col-sm-4" align="left">
+                                                <font color="red">
+                                                    @Model.registrationDate
+                                                </font>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h4 class="col-sm-12">Requirement Details</h4>
+                                    @foreach(var x in ViewBag.req)
+                                    {
+                                        <div class="card" style="background-color: LightGray">
+                                            <div class="card-block">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">
+                                                        <h4>Category</h4> <br>
+                                                    </div>
+                                                    <div class="col-md-6" align="left">
+                                                        <font color="DarkRed" size="4px">
+                                                            @x.tblCategory.categoryName
+                                                        </font>
+                                                    </div>
+                                                    @*class="col-md-4"></h4>*@
+                                                    
+
+                                                    
+                                                </div>
+                                                <div class="form-group row">
+
+                                                    <h4 class="col-sm-12" align="left">Requirement Detail</h4> <br>
+                                                    <font color="DarkRed">
+                                                        @x.description
+                                                    </font>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                    </div>
+                                    <div class="col-md-7">
+                                        <h4 class="col-sm-6" align="center">Applications</h4> <br>
+                                        <?php
+                                        foreach ($appdata as $key)
+                                        {
+                                        ?>
+                                        <div class="card" style="background-color: Moccasin">
+                                            <div class="card-block">
+                                                <div class="form-group row">
+                                                    <div class="col-md-4">  <font color="black"> Artist Name:</font> </div>
+                                                    <font color="maroon">
+                                                        <?php echo $key->name;?>
+                                                    </font>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-8"> <font color="black"> Description </font> </div>
+                                                    <font color="maroon">
+                                                        <?php echo $key->description;?>
+                                                    </font>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <div class="col-md-12" align="right">
+                                                        <font color="maroon">
+                                                            <?php
+                                                            echo $key->responsedDT; ?>
+                                                        </font>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <?php
+                                        }
+                                        ?>
+
+                                    </div>
+                                </div>
+                                <!-- <div class="card center bg-c-blue">
+                                    <div class="card-header text-dark">
+                                        <h3>Description</h3>
+                                    </div>
+                                    <div class="card-block text-white">
+                                        <?php
+                                            if(isset($recinfo->description))
+                                            echo $recinfo->description
+                                    ?>
+                                    </div>
+                                </div> -->
+
+                                <br> <br>
+
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- CB Ends -->
